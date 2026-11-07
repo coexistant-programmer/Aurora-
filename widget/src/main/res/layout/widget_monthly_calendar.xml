@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAFAFA"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/widget_mc_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Month"
+        android:textColor="#FF1A1A1A"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <GridView
+        android:id="@+id/widget_mc_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="7"
+        android:stretchMode="columnWidth" />
+</LinearLayout>

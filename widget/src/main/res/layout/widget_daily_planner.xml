@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAFAFA"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/widget_dp_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textColor="#FF1A1A1A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_dp_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day"
+        android:textColor="#FF666666"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFE0E0E0" />
+
+    <TextView
+        android:id="@+id/widget_dp_task1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="—"
+        android:textColor="#FF1A1A1A"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/widget_dp_task2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="—"
+        android:textColor="#FF1A1A1A"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/widget_dp_task3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="—"
+        android:textColor="#FF1A1A1A"
+        android:textSize="15sp" />
+</LinearLayout>
