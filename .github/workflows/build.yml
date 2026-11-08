@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,32 +20,20 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Install Android SDK packages
-        shell: bash
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Download Gradle 8.7
         run: |
-          export ANDROID_HOME=/usr/local/lib/android/sdk
-          export ANDROID_SDK_ROOT=$ANDROID_HOME
-
-          if [ -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ]; then
-            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --install \
-              "platform-tools" \
-              "platforms;android-34" \
-              "build-tools;34.0.0" \
-              --accept-licenses
-          else
-            echo "Android cmdline-tools not found at $ANDROID_HOME/cmdline-tools/latest"
-            exit 1
-          fi
-
-      - name: Gradle wrapper validation
-        uses: gradle/wrapper-validation-action@v1
+          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
+          unzip -q gradle-8.7-bin.zip
+          echo "$PWD/gradle-8.7/bin" >> $GITHUB_PATH
 
       - name: Build debug APK
-        uses: gradle/gradle-build-action@v3
-        with:
-          arguments: assembleDebug
+        run: gradle assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: aurora-calendar-debug-apk
