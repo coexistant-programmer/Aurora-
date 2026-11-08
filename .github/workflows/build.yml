@@ -28,11 +28,11 @@ jobs:
           export ANDROID_SDK_ROOT=$ANDROID_HOME
 
           if [ -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ]; then
-            yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
-            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" \
+            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --install \
               "platform-tools" \
               "platforms;android-34" \
-              "build-tools;34.0.0"
+              "build-tools;34.0.0" \
+              --accept-licenses
           else
             echo "Android cmdline-tools not found at $ANDROID_HOME/cmdline-tools/latest"
             exit 1
