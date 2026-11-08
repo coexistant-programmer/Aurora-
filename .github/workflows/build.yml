@@ -21,14 +21,22 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: |
-            platform-tools
-            platforms;android-34
-            build-tools;34.0.0
-          accept-android-sdk-licenses: true
+      - name: Install Android SDK packages
+        shell: bash
+        run: |
+          export ANDROID_HOME=/usr/local/lib/android/sdk
+          export ANDROID_SDK_ROOT=$ANDROID_HOME
+
+          if [ -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ]; then
+            yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
+            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" \
+              "platform-tools" \
+              "platforms;android-34" \
+              "build-tools;34.0.0"
+          else
+            echo "Android cmdline-tools not found at $ANDROID_HOME/cmdline-tools/latest"
+            exit 1
+          fi
 
       - name: Gradle wrapper validation
         uses: gradle/wrapper-validation-action@v1
