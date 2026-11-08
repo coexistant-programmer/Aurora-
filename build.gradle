@@ -20,15 +20,6 @@ plugins {
     id "com.google.dagger.hilt.android" version "2.50" apply false
 }
 
-allprojects {
-    configurations.matchAll {
-        it.resolutionStrategy {
-            // Force a single Compose compiler version across all modules.
-            // Keeps the UI toolchain consistent and avoids binary mismatches.
-        }
-    }
-}
-
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
